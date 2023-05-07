@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+// react
+import { useDispatch } from "react-redux";
+import { clearCart } from "@/store/features/cart";
 // styles
 import s from "./Products.module.scss";
 // boostrap
@@ -25,6 +28,7 @@ export const getServerSideProps = async () => {
 };
 
 const Products = (props: any) => {
+  const dispatch = useDispatch();
   const { prod } = props;
   // Client side rendering
   const [products, setProducts] = useState(prod);
@@ -60,6 +64,16 @@ const Products = (props: any) => {
         <Row>
           <Col lg={6}>
             <div className={s.products}>Products</div>
+          </Col>
+          <Col lg={6}>
+            <button
+              onClick={() => {
+                dispatch(clearCart());
+              }}
+              className="btn btn-warning"
+            >
+              Clear Cart
+            </button>
           </Col>
         </Row>
         <Row>
