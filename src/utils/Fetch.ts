@@ -11,6 +11,5 @@ export const getProducts = async (
     .then((json) => {
       return json;
     });
-  console.log(products);
   return products;
 };

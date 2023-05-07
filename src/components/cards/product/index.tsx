@@ -6,7 +6,6 @@ import s from "./index.module.scss";
 const Product = (props: any) => {
   const { product } = props;
   const { title, price, image } = product;
-  console.log(product);
   return (
     <>
       <div className={s.products__card}>
