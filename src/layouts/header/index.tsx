@@ -3,6 +3,8 @@ import Head from "next/head";
 import Link from "next/link";
 // styles
 import s from "./index.module.scss";
+// components
+import Counter from "@/components/cart/counter";
 
 const Header = () => {
   return (
@@ -23,6 +25,7 @@ const Header = () => {
             <Link href="/products">Products</Link>
           </li>
         </ul>
+        <Counter />
       </header>
     </>
   );

@@ -2,10 +2,16 @@ import React from "react";
 import Image from "next/image";
 //styles
 import s from "./index.module.scss";
+// redux
+import type { RootState } from "@/store";
+import { useSelector, useDispatch } from "react-redux";
+import { addProduct } from "@/store/features/cart";
 
 const Product = (props: any) => {
   const { product } = props;
   const { title, price, image } = product;
+  const dispatch = useDispatch();
+  const cart = useSelector((state: RootState) => state.cart);
   return (
     <>
       <div className={s.products__card}>
@@ -16,7 +22,14 @@ const Product = (props: any) => {
           {title.length > 20 ? title.slice(0, 20) + "..." : title}
         </div>
         <div className={s.products__card_price}>{price}</div>
-        <div className="btn btn-primary">Add to cart</div>
+        <div
+          onClick={() => {
+            dispatch(addProduct(product));
+          }}
+          className="btn btn-primary"
+        >
+          Add to cart
+        </div>
       </div>
     </>
   );
