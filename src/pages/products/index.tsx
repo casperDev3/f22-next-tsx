@@ -32,22 +32,9 @@ const Products = (props: any) => {
   const { prod } = props;
   // Client side rendering
   const [products, setProducts] = useState(prod);
-  const [sort, setSort] = useState<string>("asc");
   const [search, setSearch] = useState<string>("");
   // const [loading, setLoading] = useState<boolean>(false);
-  useEffect(() => {
-    if (sort === "asc") {
-      const sortProducts = [...products].sort((a, b) => {
-        return a.price - b.price;
-      });
-      setProducts(sortProducts);
-    } else if (sort === "desc") {
-      const sortProducts = [...products].sort((a, b) => {
-        return b.price - a.price;
-      });
-      setProducts(sortProducts);
-    }
-  }, [sort]);
+
   useEffect(() => {
     if (search) {
       const filterProducts = [...prod].filter((product) => {
@@ -77,17 +64,6 @@ const Products = (props: any) => {
           </Col>
         </Row>
         <Row>
-          <Col lg={1}>
-            <select
-              onChange={(e) => {
-                setSort(e.target.value);
-              }}
-            >
-              <option disabled>Choose sort</option>
-              <option value="asc">Sort ASC</option>
-              <option value="desc">Sort DESC</option>
-            </select>
-          </Col>
           <Col lg={1}>
             <input
               onChange={(e) => {
